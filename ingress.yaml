@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-ingress
+  namespace: comviva-argo
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/backend-protocol: HTTPS
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+    alb.ingress.kubernetes.io/subnets: subnet-0dbf042e0a43c6ff8,subnet-063d4ac8a5eae259c,subnet-0a974a92c35b3bf76   
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:043210536673:certificate/86b55d04-a0a8-46f6-b554-7260e3349e8a
+spec:
+  rules:
+    - host: comviva-argo.appskeeper.in
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
