@@ -1,30 +1,6 @@
-nameOverride: ""
-fullnameOverride: ""
-
-namespace: superapp
-
 replicaCount: 1
-revisionHistoryLimit: 4
-
 image:
-  repository: 043210536673.dkr.ecr.us-east-1.amazonaws.com/comviva-argocd
+  repository: nginx
   tag: latest
-  pullPolicy: Always
-
-resources:
-  limits:
-    cpu: "512m"
-    memory: "512Mi"
-  requests:
-    cpu: "125m"
-    memory: "250Mi"
-
 service:
-  type: ClusterIP
-  port: 3000
-
-containerPort: 3000
-
-app:
-  name: mxapm0002480-source-miatt-backend
-
+  port: 80
