@@ -7,7 +7,6 @@ metadata:
     app: {{ include "my-app.name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: {{ include "my-app.name" . }}
@@ -22,5 +21,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.service.containerport }}
-              name: {{ include "my-app.name" . }}
+            - name: http
+              containerPort: {{ .Values.service.containerPort }}
+            - name: grpc
+              containerPort: {{ .Values.service.grpcPort }}
+              protocol: TCP
