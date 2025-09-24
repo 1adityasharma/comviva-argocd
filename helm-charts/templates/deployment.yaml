@@ -1,19 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: {{ include "carvyt.fullname" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "carvyt.name" . }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: my-app
+      app: {{ include "carvyt.name" . }}
   template:
     metadata:
       labels:
-        app: my-app
+        app: {{ include "carvyt.name" . }}
     spec:
+      serviceAccountName: luiscar-secrets-sa
       containers:
-      - name: my-app
-        image: nginx
-        ports:
-        - containerPort: 80
+        - name: {{ include "carvyt.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.containerport }}
+              name: {{ include "carvyt.name" . }}
