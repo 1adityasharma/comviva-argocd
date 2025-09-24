@@ -1,5 +1,4 @@
 replicaCount: 2
-namespace: superapp
 
 image:
   repository: 043210536673.dkr.ecr.us-east-1.amazonaws.com/comviva-argocd:latest
@@ -35,4 +34,4 @@ ingress:
     alb.ingress.kubernetes.io/unhealthy-threshold-count: "5"
     alb.ingress.kubernetes.io/success-codes: 200-499
 
-namespace: prod
+namespace: superapp
