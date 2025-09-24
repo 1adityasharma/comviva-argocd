@@ -1,4 +1,5 @@
 replicaCount: 2
+namespace: superapp
 
 image:
   repository: 043210536673.dkr.ecr.us-east-1.amazonaws.com/comviva-argocd:latest
