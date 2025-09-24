@@ -1,8 +1,8 @@
-{{- define "pax-api.fullname" -}}
+{{- define "my-app.fullname" -}}
 {{ .Release.Name }}
 {{- end }}
 
-{{- define "pax-api.labels" -}}
-app: pax-api
+{{- define "my-app.labels" -}}
+app: my-app
 release: {{ .Release.Name }}
 {{- end }}
