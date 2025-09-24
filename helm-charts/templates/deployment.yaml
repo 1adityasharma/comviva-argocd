@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}
+  name: my-app
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: 1
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
+      app: my-app
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}
+        app: my-app
     spec:
       containers:
-      - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+      - name: my-app
+        image: nginx
         ports:
-        - containerPort: {{ .Values.service.port }}
+        - containerPort: 80
