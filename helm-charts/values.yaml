@@ -1,17 +1,17 @@
 replicaCount: 2
 
 image:
-  repository: 043210536673.dkr.ecr.us-east-1.amazonaws.com/comviva-argocd:latest
+  repository: 043210536673.dkr.ecr.us-east-1.amazonaws.com/comviva-argocd
   tag: latest
   pullPolicy: Always
-
 
 service:
   type: ClusterIP
   port: 80
-  containerport: 80
-  grpcport: 80
+  containerPort: 80
+  grpcPort: 50051  # optional if you want gRPC separately
 
+namespace: superapp
 
 ingress:
   enabled: true
@@ -33,5 +33,3 @@ ingress:
     alb.ingress.kubernetes.io/healthy-threshold-count: "2"
     alb.ingress.kubernetes.io/unhealthy-threshold-count: "5"
     alb.ingress.kubernetes.io/success-codes: 200-499
-
-namespace: superapp
