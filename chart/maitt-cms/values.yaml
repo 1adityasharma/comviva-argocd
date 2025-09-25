@@ -5,29 +5,75 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
-service:
-  type: ClusterIP
-  port: 80
-
-resources: {}
-
-# optional: override app name if you don’t want to use Chart.yaml name
+imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-#configmaps
-config:
-  SPRING_PROFILES_ACTIVE: "dev"
-  JAVA_OPTS: "-Xms512m -Xmx1024m"
+podAnnotations: {}
 
-#HPA
-hpa:
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+  annotations: {}
+
+autoscaling:
   enabled: true
   minReplicas: 2
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: null
+  metrics: []
 
-#service-account
+resources: {}
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+config:
+  SPRING_PROFILES_ACTIVE: "dev"
+  JAVA_OPTS: "-Xms512m -Xmx1024m"
+
+env: []
+
+volumeMounts: []
+
+volumes: []
+
 serviceAccount:
   create: false
   name: ""
