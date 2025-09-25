@@ -26,3 +26,9 @@ hpa:
   minReplicas: 2
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
+
+#service-account
+serviceAccount:
+  create: false
+  name: ""
+  annotations: {}
