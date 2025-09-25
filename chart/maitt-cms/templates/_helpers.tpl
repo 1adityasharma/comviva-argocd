@@ -26,3 +26,14 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/version: {{ .Chart.AppVersion }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end -}}
+
+{{/*
+ServiceAccount name (optional override)
+*/}}
+{{- define "app.serviceAccountName" -}}
+{{- if .Values.serviceAccount.name -}}
+{{ .Values.serviceAccount.name }}
+{{- else -}}
+{{ include "app.fullname" . }}
+{{- end -}}
+{{- end -}}
