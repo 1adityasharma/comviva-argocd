@@ -14,3 +14,8 @@ resources: {}
 # optional: override app name if you don’t want to use Chart.yaml name
 nameOverride: ""
 fullnameOverride: ""
+
+#configmaps
+config:
+  SPRING_PROFILES_ACTIVE: "dev"
+  JAVA_OPTS: "-Xms512m -Xmx1024m"
