@@ -29,7 +29,7 @@ service:
   annotations: {}
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
@@ -96,7 +96,7 @@ serviceAccount:
   annotations: {}
 
 secret:
-  create: false
+  create: true
   name: ""
   type: Opaque
   data: {}
