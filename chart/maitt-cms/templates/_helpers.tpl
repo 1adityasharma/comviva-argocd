@@ -2,7 +2,7 @@
 Expand the name of the chart
 */}}
 {{- define "app.name" -}}
-{{- default .Chart.Name .Values.nameOverride -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
@@ -10,9 +10,9 @@ Create a default fully qualified app name
 */}}
 {{- define "app.fullname" -}}
 {{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride -}}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- printf "%s-%s" .Release.Name .Chart.Name -}}
+MXAPM0002480-source-miunefon-backend
 {{- end -}}
 {{- end -}}
 
@@ -20,7 +20,7 @@ Create a default fully qualified app name
 Create chart name and version as used by the chart label.
 */}}
 {{- define "app.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
