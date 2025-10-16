@@ -7,7 +7,7 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "MXAPM0002480-source-miunefon-backend"
 
 podAnnotations: {}
 
