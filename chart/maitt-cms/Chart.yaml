@@ -1,5 +1,5 @@
 apiVersion: v2
-name: maitt-cms
+name: mxapm0002480-source-miunefon-cms
 description: Helm chart for my-app microservice
 type: application
 version: 1.0.0
