@@ -1,5 +1,5 @@
 apiVersion: v2
-name: mxapm0002480-source-miunefon-backend
+name: miunefon-backend
 description: Helm chart for unifone microservice
 type: application
 version: 1.0.0
